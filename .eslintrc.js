@@ -1,7 +1,8 @@
 module.exports = {
   root: true,
+  parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: "@typescript-eslint/parser",
     project: './tsconfig.json',
     extraFileExtensions: ['.vue'],
   },
@@ -12,17 +13,17 @@ module.exports = {
   },
   extends: [
     'airbnb-typescript/base',
-    'plugin:vue-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:vue/strongly-recommended',
     'prettier',
     'prettier/vue',
     'prettier/@typescript-eslint',
+    "plugin:vue/base",
   ],
   plugins: ['@typescript-eslint', 'vue-a11y', 'prettier', 'vue'],
   // add your custom rules here
   rules: {
-    'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'es5', printWidth: 100 }],
+    'prettier/prettier': ['error', { singleQuote: true, trailingComma: 'es5', printWidth: 100 , endOfLine: 'auto', "useTabs": false}],
     'import/extensions': [
       'error',
       'always',
@@ -40,6 +41,9 @@ module.exports = {
     'class-methods-use-this': 0,
     'vue/max-attributes-per-line': 'off',
     'vue/component-name-in-template-casing': [1, 'kebab-case'],
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/multiline-html-element-content-newline': 'off',  
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
   settings: {
     'import/core-modules': [
@@ -66,5 +70,14 @@ module.exports = {
         },
       },
     },
+    "overrides": [
+      {
+        // enable the rule specifically for TypeScript files
+        "files": ["*.ts", "*.mts", "*.cts", "*.tsx"],
+        "rules": {
+          "@typescript-eslint/explicit-module-boundary-types": "error"
+        }
+      }
+    ],
   },
 };
